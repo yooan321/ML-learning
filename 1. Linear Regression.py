@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp
 import time
+import pandas as pd
 # Generate synthetic data
 np.random.seed(0)
 X = 2 * np.random.rand(100, 1)
