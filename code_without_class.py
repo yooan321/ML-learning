@@ -37,3 +37,42 @@ def initial_state() :
     #append color to a list
     for node in g :
         color_map.append(g.nodes[node]['color'])
+        
+        
+#function to carry out
+def change ( ) :
+#empty list to append color into
+    colormap = []
+    for node in g:
+    #Neighbor nodes of a given node so up, down, left and right
+        for neighbor in g.neighbors(node):
+            if g.nodes[node]['color'] == REST:
+                #let a node at rest turn into a sharer with probability 0.001
+                g.nodes[node]['color'] = random.choices([SHARER, REST], [0.001, 0.999])[0]
+            # If node is sharer with probability 0.01 and if neighbor is rest in
+            # else if neighbor is bored change the node into bored
+            if g.nodes[node][’color’] == SHARER and random.random() < 0.01:
+                if g.nodes[neighbor][’color’]==REST:
+                    g.nodes[neighbor][’color’] = SHARER
+                elif g.nodes[neighbor][’color’]==BORED:
+                    g.nodes[node][’color’]=BORED
+            #If nodes is bored with probability 0.01 and if neighbor is rest
+            #else nodes stay bored
+            if g.nodes[node][’color’] == BORED and random.random() < 0.0005:
+                if g.nodes[neighbor][’color’]==REST:
+                    g.nodes[node][’color’]=REST
+                else:
+                    g.nodes[node][’color’]=BORED
+        #append node color into the list ”colormap”
+        colormap.append(g.nodes[node][’color’])
+    return
+
+# list to put counts of states into
+count_rest = list(range(0, nu))
+count_sharer = list(range(0, nu))
+count_bored = list(range(0, nu))
+
+def run_change_times(n):
+    for j in range(n):
+        #empty list of lists to append values of states into
+        count_rest[j] = []
