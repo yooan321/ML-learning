@@ -76,3 +76,25 @@ def run_change_times(n):
     for j in range(n):
         #empty list of lists to append values of states into
         count_rest[j] = []
+        count_sharer[j] = []
+        count_bored[j] = []
+        initial_state()
+        #append the values into the list of lists ”count_rest[j]” , ”count_sharer[j]” , ”count_bored[j]”
+        for i in range (1000):
+            change()
+            count_rest[j].append(count(g, REST))
+            count_bored[j].append(count(g, BORED))
+            count_sharer[j].append(count(g, SHARER))
+    
+run_change_times(nu)
+#plot the results
+fig, ax = plt.subplots()
+step = list(range(0, 1000))
+for i in range(nu):
+    ax.plot(step, count_rest[i], "#73a832",
+            step, count_bored[i], "#3263a8",
+            step, count_sharer[i], "#a832a0")
+
+ax.legend(['Resting', 'Bored', 'Sharer'])
+ax.set(xlabel='Time SSteps', ylabel='Count of States', title='Spread Of Memes in a 2D Lattice Network')
+plt.show()
