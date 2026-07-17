@@ -1,6 +1,6 @@
 import numpy as np
 import networkx as nx
-import matplotlib.pyplot as plt
+import matplotlib
 import json
 import random
 from networkx.readwrite import json_graph
