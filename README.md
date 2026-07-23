@@ -1,5 +1,5 @@
 # ML-learning
 
-This repo is a start at learning machine learning through python.
-Currently learned linear regression (need to code up).
-Learned about logistic, 
+This repository is a start at learning machine learning through python.
+Have currently learned linear, logistic regression and support vector machines.
+Need to code up svm.
