@@ -1,11 +1,14 @@
+# import packages and modules
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn import linear_model, datasets
 from sklearn.metrics import mean_squared_error, r2_score 
 
+# split data into x and y from iris
 iris_x, iris_y = datasets.load_iris(return_X_y=True)
 
+#split dependent variables into train and test sets 67/33 split 
 iris_x_train = iris_x[:-50]
 iris_x_test = iris_x[-50:]
 
@@ -13,14 +16,19 @@ iris_x_test = iris_x[-50:]
 iris_y_train = iris_y[:-50]
 iris_y_test = iris_y[-50:]
 
+# load the linear regression model and fit the training data
 linreg = linear_model.LinearRegression()
 linreg.fit(iris_x_train, iris_y_train)
 
+# predict the test set from the model
 iris_y_pred = linreg.predict(iris_x_test)
 
+# print out the linear regression model coefficients, mean squared error, and coefficient of determination
 print("Coefficients: \n", linreg.coef_)
 print("Mean squared error: %.2f" % mean_squared_error(iris_y_test, iris_y_pred))
 print("Coefficient of determination: %.2f" % r2_score(iris_y_test, iris_y_pred))
+
+# plot the test set and the predicted values from the model
 plt.scatter(iris_x_test, iris_y_test, color='black')
 plt.plot(iris_x_test, iris_y_pred, color='blue', linewidth=3)
 
@@ -29,7 +37,10 @@ plt.yticks(())
 
 plt.show()
 
+# load the breast cancer dataset and split into x and y
 x, y = datasets.load_breast_cancer(return_X_y=True)
+
+# Split the data into training/testing sets
 x_train = x[:-50]
 x_test = x[-50:]
 
